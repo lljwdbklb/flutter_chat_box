@@ -65,9 +65,9 @@ class _ChatWindowState extends State<ChatWindow> {
           const SizedBox(height: 16),
           Form(
             key: _formKey, // 将 GlobalKey 赋值给 Form 组件的 key 属性
-            child: RawKeyboardListener(
+            child: KeyboardListener(
               focusNode: FocusNode(),
-              onKey: _handleKeyEvent,
+              onKeyEvent: _handleKeyEvent,
               child: Row(
                 children: [
                   Expanded(
@@ -227,8 +227,8 @@ class _ChatWindowState extends State<ChatWindow> {
     }
   }
 
-  void _handleKeyEvent(RawKeyEvent value) {
-    if (value.isKeyPressed(LogicalKeyboardKey.enter)) {
+  void _handleKeyEvent(KeyEvent value) {
+    if (value.logicalKey == LogicalKeyboardKey.enter) {
       _sendMessage();
     }
   }

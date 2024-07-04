@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/services.dart';
 import 'package:flutter_chatgpt/controller/prompt.dart';
 import 'package:http/http.dart' as http;
 
@@ -21,7 +22,13 @@ Future<List<Prompt>> getPrompts() async {
       prompts.add(Prompt(item['act'], item['prompt']));
     }
   } else {
-    throw Exception('Failed to load prompts');
+    // throw Exception('Failed to load prompts');
+    final jsonStr = await rootBundle.loadString('assets/prompts-zh.json');
+    final jsonResponse = json.decode(jsonStr);
+
+    for (var item in jsonResponse) {
+      prompts.add(Prompt(item['act'], item['prompt']));
+    }
   }
   return prompts;
 }

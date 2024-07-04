@@ -75,6 +75,8 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   # generate: true # Add this line
+  assets:
+    - assets/prompts-zh.json
 
 flutter_launcher_icons:
   android: "launcher_icon"
